@@ -145,7 +145,7 @@
      _hyperscript (_="..."), Petite-Vue (v-scope), and Stimulus (data-controller)
      ========================================================================= -->
 <body
-  id="taskboard-vm-root"
+  id="asterion-vm-root"
   class="wallpaper-nebula text-slate-100 select-none flex flex-col justify-between transition-all duration-500"
   hx-ext="sse,ws,preload,head-support,multi-swap,alpine-morph,loading-states,response-targets"
   hx-history-cache="true"
@@ -162,7 +162,7 @@
     "throughputGbps": 400.0,
     "storageTB": 1024,
     "gestureActive": false,
-    "cliHistory": ["TaskBoard VM Kernel v9.4 initialized (WebGL + PyScript + SQL + Tone + MediaPipe)"],
+    "cliHistory": ["ASTERION VM Kernel v9.4 initialized (WebGL + PyScript + SQL + Tone + MediaPipe)"],
     "cliInput": ""
   }'
   x-data="{
@@ -176,7 +176,7 @@
     audioPlaying: false,
     simRunning: true,
     poetryOutput: 'Silicon dreams in parallel streams,\nLight weaves logic through glass and wire.',
-    codeEditor: '# TaskBoard Polyglot Kernel (Python / SQL / PHP / JS)\nimport math\nprint(\'Parallel Tensor Ready:\', [round(math.sin(x), 3) for x in range(5)])',
+    codeEditor: '# ASTERION Polyglot Kernel (Python / SQL / PHP / JS)\nimport math\nprint(\'Parallel Tensor Ready:\', [round(math.sin(x), 3) for x in range(5)])',
     codeOutput: 'Parallel Tensor Ready: [0.0, 0.841, 0.909, 0.141, -0.757]',
     sqlQuery: 'SELECT subsystem, status, throughput_gbps FROM kernel_nodes ORDER BY throughput_gbps DESC;',
     sqlRows: [
@@ -207,7 +207,7 @@
     runCmd() {
       if (!this.cmd.trim()) return;
       const c = this.cmd.trim();
-      this.cliLogs.push('vm@taskboard:~$ ' + c);
+      this.cliLogs.push('vm@asterion:~$ ' + c);
       if (c === 'help') this.cliLogs.push('Commands: gui | cui | cli | sim | compute | data | media | files | power | clear');
       else if (c === 'gui') { this.mode = 'GUI'; this.cliLogs.push('Switched to Visual GUI Mode'); }
       else if (c === 'cui') { this.mode = 'CUI'; this.cliLogs.push('Switched to Conversational / Command UI Mode'); }
@@ -750,7 +750,7 @@
             <div class="bg-indigo-600 text-white rounded-full w-9"><span>VM</span></div>
           </div>
           <div class="chat-bubble bg-slate-800 text-slate-100 text-sm">
-            Hello! I am your TaskBoard Visual Virtual Machine. Tap a guided goal below or tell me what you want to create, simulate, or analyze.
+            Hello! I am your ASTERION Visual Virtual Machine. Tap a guided goal below or tell me what you want to create, simulate, or analyze.
           </div>
         </div>
 
@@ -778,7 +778,7 @@
         </template>
       </div>
       <form @submit.prevent="runCmd()" class="flex items-center gap-2 border-t border-emerald-900/60 pt-2">
-        <span class="text-cyan-400 font-bold">vm@taskboard:~$</span>
+        <span class="text-cyan-400 font-bold">vm@asterion:~$</span>
         <input type="text" x-model="cmd" placeholder="Type help, gui, cui, sim, compute, data, media, files, clear..." class="bg-transparent border-none focus:outline-none text-emerald-300 flex-1" autofocus />
         <button type="submit" class="btn btn-xs btn-success">EXEC</button>
       </form>
