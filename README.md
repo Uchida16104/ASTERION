@@ -1,4 +1,4 @@
-# TaskBoard OS — Next-Generation Declarative Visual Virtual Machine & Web Computer
+# ASTERION — Next-Generation Declarative Visual Virtual Machine & Web Computer
 
 **Repository Paths:**
 - `TaskBoard/index.html` — Single-file, attribute-driven Visual Virtual Machine, Computer, and Operating System shell.
@@ -8,7 +8,7 @@
 
 ## 1. Overview & Design Philosophy
 
-**TaskBoard OS** is a state-of-the-art, code-free visual virtual machine and browser-native operating environment where application logic, state persistence, hypermedia transport, motion choreography, and responsive styling are consolidated into **HTML `id` attributes, `class` attributes, declarative `data-*` / `hx-*` / `x-*` / `_` attributes, `<script src>` tags, and `<link href>` tags**.
+**ASTERION** is a state-of-the-art, code-free visual virtual machine and browser-native operating environment where application logic, state persistence, hypermedia transport, motion choreography, and responsive styling are consolidated into **HTML `id` attributes, `class` attributes, declarative `data-*` / `hx-*` / `x-*` / `_` attributes, `<script src>` tags, and `<link href>` tags**.
 
 ### Universal Accessibility (All Ages, Genders, and Languages)
 - **Tri-Modal Operation (`GUI` / `CUI` / `CLI`):** Users can seamlessly switch at any moment between:
