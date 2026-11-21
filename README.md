@@ -1,8 +1,8 @@
 # ASTERION — Next-Generation Declarative Visual Virtual Machine & Web Computer
 
 **Repository Paths:**
-- `TaskBoard/index.html` — Single-file, attribute-driven Visual Virtual Machine, Computer, and Operating System shell.
-- `TaskBoard/README.md` — Architectural specification, stack matrix, and universal accessibility guide.
+- `ASTERION/index.html` — Single-file, attribute-driven Visual Virtual Machine, Computer, and Operating System shell.
+- `ASTERION/README.md` — Architectural specification, stack matrix, and universal accessibility guide.
 
 ---
 
@@ -14,7 +14,7 @@
 - **Tri-Modal Operation (`GUI` / `CUI` / `CLI`):** Users can seamlessly switch at any moment between:
   1. **GUI (Graphical User Interface):** High-contrast pictographic cards, visual stage monitors, and one-tap controls understandable without reading dense manuals.
   2. **CUI (Conversational User Interface):** Natural-language intent prompts and guided action pills.
-  3. **CLI (Command-Line Interface):** Full-speed keyboard terminal (`vm@taskboard:~$`) for power users and automation.
+  3. **CLI (Command-Line Interface):** Full-speed keyboard terminal (`vm@ASTERION:~$`) for power users and automation.
 - **Multilingual & Icon-First Design:** Built-in language switching (`EN`, `JA`, `ES`, `FR`, `ZH`, `AR`, `HI`) paired with universal Web Awesome & Iconify pictograms.
 
 ---
@@ -53,5 +53,5 @@
 
 ## 4. Quick Start & Developer Ergonomics
 
-1. Open `TaskBoard/index.html` directly in any modern WebAssembly- and WebGL2-capable browser (no build step required).
+1. Open `ASTERION/index.html` directly in any modern WebAssembly- and WebGL2-capable browser (no build step required).
 2. For authoring extensions in Visual Studio Code, enable **Tailwind CSS IntelliSense**, **Emmet**, and **Datastar IDE Support** to get full autocomplete across `class`, `id`, and declarative `data-*` / `hx-*` / `x-*` attributes.
