@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASTERION — Next-Gen Declarative Visual VM & Universal Web Computer</title>
+
+  <!-- =====================================================================
+       1. DECLARATIVE STYLING, UTILITY & COMPONENT FRAMEWORKS (<link href>)
+       ===================================================================== -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.13/dist/css/uikit.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simpledotcss@2.3.2/simple.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/open-props@1.7.7/open-props.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/open-props@1.7.7/animations.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.conditional.min.css" />
+
+  <!-- =====================================================================
+       2. MOTION, TRANSITIONS & MICRO-INTERACTION LIBRARIES (<link href>)
+       ===================================================================== -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magic/1.1.0/magic.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/transition-style@1.0.1/transition.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easemotion-css@1.0.0/dist/easemotion.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/blades-css@1.0.0/dist/blades.min.css" />
+
+  <!-- =====================================================================
+       3. TAILWIND PLAY CDN & UNOCSS RUNTIME (<script src>)
+       ===================================================================== -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime@0.63.6/uno.global.js"></script>
+
+  <!-- =====================================================================
+       4. ICONOGRAPHY & WEB COMPONENTS (<script src> & <link href>)
+       ===================================================================== -->
+  <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-alpha.4/dist/styles/webawesome.css" />
+  <script type="module" src="https://early.webawesome.com/webawesome@3.0.0-alpha.4/dist/webawesome.loader.js"></script>
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.21.13/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.21.13/dist/js/uikit-icons.min.js"></script>
+
+  <!-- =====================================================================
+       5. HYPERMEDIA, REACTIVITY & ATTRIBUTE-DRIVEN ENGINES (<script src>)
+       ===================================================================== -->
+  <!-- HTMX Core & Extensions (sse/see, ws, multipart, live, pending, preload, history-cache, head, download, targets, upsert, csp, alpine-compat) -->
+  <script src="https://unpkg.com/htmx.org@2.0.3"></script>
+  <script src="https://unpkg.com/htmx-ext-sse@2.2.2/sse.js"></script>
+  <script src="https://unpkg.com/htmx-ext-ws@2.0.1/ws.js"></script>
+  <script src="https://unpkg.com/htmx-ext-preload@2.0.1/preload.js"></script>
+  <script src="https://unpkg.com/htmx-ext-head-support@2.0.1/head-support.js"></script>
+  <script src="https://unpkg.com/htmx-ext-multi-swap@2.0.0/multi-swap.js"></script>
+  <script src="https://unpkg.com/htmx-ext-alpine-morph@2.0.0/alpine-morph.js"></script>
+  <script src="https://unpkg.com/htmx-ext-loading-states@2.0.0/loading-states.js"></script>
+  <script src="https://unpkg.com/htmx-ext-response-targets@2.0.0/response-targets.js"></script>
+
+  <!-- _hyperscript -->
+  <script src="https://unpkg.com/hyperscript.org@0.9.13"></script>
+
+  <!-- Datastar Reactive Hypermedia Runtime -->
+  <script type="module" src="https://cdn.jsdelivr.net/gh/starfederation/datastar@v1.0.0-beta.1/bundles/datastar.js"></script>
+
+  <!-- Alpine.js + Official Plugins (Collapse, Focus, Intersect, Mask, Morph, Persist, Resize, Sort, Anchor) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.14.3/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.14.3/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.14.3/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.14.3/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/morph@3.14.3/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.14.3/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/resize@3.14.3/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/sort@3.14.3/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/anchor@3.14.3/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
+
+  <!-- Unpoly, Stimulus, Turbo, Vue.js, Petite-Vue -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/unpoly@3.9.2/unpoly.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/unpoly@3.9.2/unpoly.min.js"></script>
+  <script src="https://unpkg.com/@hotwired/stimulus@3.2.2/dist/stimulus.umd.js"></script>
+  <script src="https://unpkg.com/@hotwired/turbo@8.0.12/dist/turbo.es2017-umd.js"></script>
+  <script src="https://unpkg.com/vue@3.5.12/dist/vue.global.prod.js"></script>
+  <script src="https://unpkg.com/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+
+  <!-- =====================================================================
+       6. COMPUTE, 3D/WEBGL, DATA SCIENCE, VISION, AUDIO & LANGUAGE RUNTIMES
+       ===================================================================== -->
+  <!-- Graphics & Simulation: Three.js, P5.js, Processing.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
+
+  <!-- Audio Synthesis: Tone.js & SuperCollider.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/15.1.3/Tone.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/supercolliderjs@0.15.0/dist/supercollider.min.js"></script>
+
+  <!-- Vision & Gesture Recognition: MediaPipe -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+
+  <!-- Data & Language Engines: sql.js, PyScript, PHP.js (Uniter/Locutus) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.11.0/sql-wasm.js"></script>
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css" />
+  <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uniter@2.18.0/dist/uniter.min.js"></script>
+
+  <!-- =====================================================================
+       7. DECLARATIVE KERNEL & ZERO-INLINE-JS VM BOOTSTRAPPER
+       (All behavior lives in id, class, data-*, hx-*, x-*, _="..." attributes)
+       ===================================================================== -->
+  <style>
+    /* Normalize multi-framework resets so Tailwind + daisyUI + UIkit coexist cleanly */
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      max-width: 100vw !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      overflow: hidden !important;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+    }
+    .wallpaper-nebula { background: radial-gradient(circle at 20% 20%, #312e81 0%, #0f172a 55%, #020617 100%); }
+    .wallpaper-aurora { background: linear-gradient(135deg, #064e3b 0%, #1e1b4b 50%, #3b0764 100%); }
+    .wallpaper-sunset { background: linear-gradient(135deg, #7c2d12 0%, #831843 50%, #1e1b4b 100%); }
+    .wallpaper-matrix { background: radial-gradient(circle at 50% 50%, #052e16 0%, #020617 100%); }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.35); border-radius: 9999px; }
+  </style>
+</head>
+
+<!-- =========================================================================
+     ROOT VISUAL VIRTUAL MACHINE SHELL
+     Driven by Alpine.js ($persist), Datastar (data-store), HTMX (hx-ext),
+     _hyperscript (_="..."), Petite-Vue (v-scope), and Stimulus (data-controller)
+     ========================================================================= -->
+<body
+  id="asterion-vm-root"
+  class="wallpaper-nebula text-slate-100 select-none flex flex-col justify-between transition-all duration-500"
+  hx-ext="sse,ws,preload,head-support,multi-swap,alpine-morph,loading-states,response-targets"
+  hx-history-cache="true"
+  hx-csp="true"
+  hx-alpine-compat="true"
+  data-controller="vm-kernel desktop-shell runtime-orchestrator"
+  data-store='{
+    "mode": "GUI",
+    "lang": "EN",
+    "power": "BALANCED",
+    "wallpaper": "wallpaper-nebula",
+    "activeApp": "dashboard",
+    "cpuCores": 128,
+    "throughputGbps": 400.0,
+    "storageTB": 1024,
+    "gestureActive": false,
+    "cliHistory": ["ASTERION VM Kernel v9.4 initialized (WebGL + PyScript + SQL + Tone + MediaPipe)"],
+    "cliInput": ""
+  }'
+  x-data="{
+    mode: $persist('GUI'),
+    lang: $persist('EN'),
+    power: $persist('BALANCED'),
+    wallpaper: $persist('wallpaper-nebula'),
+    activeApp: 'dashboard',
+    searchQuery: '',
+    gestureOn: false,
+    audioPlaying: false,
+    simRunning: true,
+    poetryOutput: 'Silicon dreams in parallel streams,\nLight weaves logic through glass and wire.',
+    codeEditor: '# ASTERION Polyglot Kernel (Python / SQL / PHP / JS)\nimport math\nprint(\'Parallel Tensor Ready:\', [round(math.sin(x), 3) for x in range(5)])',
+    codeOutput: 'Parallel Tensor Ready: [0.0, 0.841, 0.909, 0.141, -0.757]',
+    sqlQuery: 'SELECT subsystem, status, throughput_gbps FROM kernel_nodes ORDER BY throughput_gbps DESC;',
+    sqlRows: [
+      { subsystem: 'WebGL / Three.js GPU Cluster', status: 'ONLINE', throughput_gbps: 164.8 },
+      { subsystem: 'Parallel Compute Matrix', status: 'ACTIVE', throughput_gbps: 128.4 },
+      { subsystem: 'NVMe-oF Virtual Storage Bus', status: 'OPTIMAL', throughput_gbps: 96.2 },
+      { subsystem: 'MediaPipe Vision & Gesture Engine', status: 'STANDBY', throughput_gbps: 42.0 }
+    ],
+    files: $persist([
+      { id: 1, name: 'Cluster_Simulation.sim', type: 'folder', size: '14.2 TB', updated: 'Just now' },
+      { id: 2, name: 'BigData_Warehouse.sqlite', type: 'database', size: '4.8 TB', updated: '2m ago' },
+      { id: 3, name: 'Quantum_Symphony.tone', type: 'audio', size: '840 MB', updated: '10m ago' },
+      { id: 4, name: 'Neural_Render_4K.mp4', type: 'video', size: '12.6 GB', updated: '1h ago' },
+      { id: 5, name: 'Haiku_Generator.py', type: 'code', size: '64 KB', updated: '3h ago' }
+    ]),
+    jobs: $persist([
+      { id: 'JOB-901', name: 'Molecular Dynamics Large-Scale Sim', progress: 84, priority: 'HIGH', node: 'GPU-01' },
+      { id: 'JOB-902', name: 'Petabyte Telemetry Stream Analysis', progress: 62, priority: 'ULTRA', node: 'TPU-04' },
+      { id: 'JOB-903', name: '4K Raytraced Video Synthesis', progress: 95, priority: 'NORMAL', node: 'VPU-02' }
+    ]),
+    cliLogs: [
+      'ASTERION [Version 2026.11-DECLARATIVE]',
+      'Loaded Runtimes: HTMX, Datastar, Alpine, Unpoly, Stimulus, Turbo, Vue, Petite-Vue, _hyperscript',
+      'Compute Runtimes: WebGL, Three.js, P5.js, Processing.js, PyScript, PHP.js, sql.js, MediaPipe, Tone.js, SuperCollider.js',
+      'Type `help` or click any universal icon pill below.'
+    ],
+    cmd: '',
+    runCmd() {
+      if (!this.cmd.trim()) return;
+      const c = this.cmd.trim();
+      this.cliLogs.push('vm@asterion:~$ ' + c);
+      if (c === 'help') this.cliLogs.push('Commands: gui | cui | cli | sim | compute | data | media | files | power | clear');
+      else if (c === 'gui') { this.mode = 'GUI'; this.cliLogs.push('Switched to Visual GUI Mode'); }
+      else if (c === 'cui') { this.mode = 'CUI'; this.cliLogs.push('Switched to Conversational / Command UI Mode'); }
+      else if (c === 'cli') { this.mode = 'CLI'; this.cliLogs.push('Switched to Full-Screen Terminal CLI Mode'); }
+      else if (c === 'clear') { this.cliLogs = []; }
+      else if (['sim','compute','data','media','files','power','network','studio'].includes(c)) {
+        this.activeApp = c; this.mode = 'GUI';
+        this.cliLogs.push('Launched subsystem: ' + c.toUpperCase());
+      } else {
+        this.cliLogs.push('Executed declarative pipeline [' + c + '] -> 0 errors (1.4ms)');
+      }
+      this.cmd = '';
+    }
+  }"
+  :class="wallpaper"
+  _="on keydown[ctrlKey and key=='k'] put '' into #universal-search then call #universal-search.focus()"
+>
+
+  <!-- =======================================================================
+       TOP SYSTEM BAR: UNIVERSAL ACCESSIBILITY, MODES (GUI/CUI/CLI),
+       LANGUAGE SETTINGS, POWER MANAGEMENT & TELEMETRY
+       ======================================================================= -->
+  <header id="os-top-bar" class="glass-panel px-4 py-2 flex flex-wrap items-center justify-between gap-2 z-50 animate__animated animate__fadeInDown">
+    <!-- Left: Brand + Universal Visual Mode Switcher (GUI / CUI / CLI) -->
+    <div id="os-brand-modes" class="flex items-center gap-3">
+      <div class="flex items-center gap-2 cursor-pointer hvr-grow" @click="activeApp='dashboard'; mode='GUI'">
+        <span class="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-500 via-cyan-400 to-emerald-400 flex items-center justify-center shadow-lg">
+          <iconify-icon icon="solar:cpu-bolt-bold-duotone" class="text-slate-950 text-xl"></iconify-icon>
+        </span>
+        <div>
+          <span class="font-bold tracking-tight text-sm md:text-base text-white">ASTERION</span>
+          <span class="badge badge-xs badge-info ml-1">VM</span>
+        </div>
+      </div>
+
+      <!-- Universal Mode Switcher (Accessible across all ages/languages via icons + labels) -->
+      <div id="mode-switcher-group" class="join bg-slate-900/80 p-0.5 rounded-xl border border-slate-700/60" role="group" aria-label="Interface Mode">
+        <button id="btn-mode-gui" @click="mode='GUI'" :class="mode==='GUI' ? 'btn-primary text-white' : 'btn-ghost text-slate-300'" class="btn btn-xs join-item gap-1 rounded-lg">
+          <iconify-icon icon="solar:widget-5-bold-duotone"></iconify-icon>
+          <span>GUI</span>
+        </button>
+        <button id="btn-mode-cui" @click="mode='CUI'" :class="mode==='CUI' ? 'btn-secondary text-white' : 'btn-ghost text-slate-300'" class="btn btn-xs join-item gap-1 rounded-lg">
+          <iconify-icon icon="solar:chat-round-line-bold-duotone"></iconify-icon>
+          <span>CUI</span>
+        </button>
+        <button id="btn-mode-cli" @click="mode='CLI'" :class="mode==='CLI' ? 'btn-accent text-slate-950' : 'btn-ghost text-slate-300'" class="btn btn-xs join-item gap-1 rounded-lg">
+          <iconify-icon icon="solar:terminal-bold-duotone"></iconify-icon>
+          <span>CLI</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Center: Universal Pictographic Search & Quick-Action Bar -->
+    <div id="universal-command-strip" class="flex-1 max-w-md mx-2">
+      <label class="input input-xs md:input-sm input-bordered bg-slate-900/70 border-slate-700 flex items-center gap-2 rounded-full">
+        <iconify-icon icon="solar:magnifer-bold-duotone" class="text-cyan-400 text-base"></iconify-icon>
+        <input id="universal-search" type="text" x-model="searchQuery" placeholder="Search apps, files, compute, audio, 3D... (Ctrl+K)" class="grow bg-transparent text-xs md:text-sm focus:outline-none text-white" />
+        <kbd class="kbd kbd-xs bg-slate-800 text-slate-400">⌘K</kbd>
+      </label>
+    </div>
+
+    <!-- Right: Gesture Vision, Language, Wallpaper & Power Controls -->
+    <div id="os-hardware-controls" class="flex items-center gap-2">
+      <!-- Gesture Recognition Toggle (MediaPipe) -->
+      <button
+        id="btn-gesture-toggle"
+        @click="gestureOn = !gestureOn"
+        :class="gestureOn ? 'btn-success text-slate-950 animate-pulse' : 'btn-ghost text-slate-300'"
+        class="btn btn-xs rounded-full gap-1 border border-slate-700"
+        title="MediaPipe Camera Hand Gesture Control"
+      >
+        <iconify-icon icon="solar:hand-shake-bold-duotone" class="text-base"></iconify-icon>
+        <span class="hidden sm:inline" x-text="gestureOn ? 'Gesture ON' : 'Gesture'"></span>
+      </button>
+
+      <!-- Language Selector (Universal Multilingual Support) -->
+      <select id="select-language" x-model="lang" class="select select-xs bg-slate-900/80 border-slate-700 text-slate-200 rounded-full">
+        <option value="EN">🌐 EN (English)</option>
+        <option value="JA">🇯🇵 JA (日本語)</option>
+        <option value="ES">🇪🇸 ES (Español)</option>
+        <option value="FR">🇫🇷 FR (Français)</option>
+        <option value="ZH">🇨🇳 ZH (中文)</option>
+        <option value="AR">🇸🇦 AR (العربية)</option>
+        <option value="HI">🇮🇳 HI (हिन्दी)</option>
+      </select>
+
+      <!-- Background Wallpaper Quick-Cycler -->
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-xs btn-ghost border border-slate-700 rounded-full gap-1" title="Background Image & Wallpaper">
+          <iconify-icon icon="solar:gallery-wide-bold-duotone" class="text-pink-400 text-base"></iconify-icon>
+        </div>
+        <ul tabindex="0" class="dropdown-content z-[100] menu p-2 shadow-2xl glass-panel rounded-2xl w-48 gap-1">
+          <li class="menu-title text-xs text-slate-400">Desktop Wallpaper</li>
+          <li><a @click="wallpaper='wallpaper-nebula'" class="text-xs"><span class="w-3 h-3 rounded-full bg-indigo-600 inline-block"></span> Deep Nebula</a></li>
+          <li><a @click="wallpaper='wallpaper-aurora'" class="text-xs"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span> Polar Aurora</a></li>
+          <li><a @click="wallpaper='wallpaper-sunset'" class="text-xs"><span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span> Solar Flare</a></li>
+          <li><a @click="wallpaper='wallpaper-matrix'" class="text-xs"><span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span> Quantum Matrix</a></li>
+        </ul>
+      </div>
+
+      <!-- Power Management Selector -->
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-xs btn-ghost border border-slate-700 rounded-full gap-1" title="Power Management">
+          <iconify-icon icon="solar:battery-charge-bold-duotone" class="text-emerald-400 text-base"></iconify-icon>
+          <span class="hidden md:inline text-xs" x-text="power"></span>
+        </div>
+        <ul tabindex="0" class="dropdown-content z-[100] menu p-2 shadow-2xl glass-panel rounded-2xl w-52 gap-1">
+          <li class="menu-title text-xs text-slate-400">VM Power Profile</li>
+          <li><a @click="power='TURBO'" class="text-xs text-amber-300">⚡ Turbo Parallel (100% GPU)</a></li>
+          <li><a @click="power='BALANCED'" class="text-xs text-cyan-300">⚖️ Balanced Adaptive</a></li>
+          <li><a @click="power='ECO'" class="text-xs text-emerald-300">🌱 Eco Low-Power Sleep</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- =======================================================================
+       MAIN WORKSPACE STAGE (DYNAMICALLY ADAPTS BETWEEN GUI, CUI, AND CLI)
+       ======================================================================= -->
+  <main id="vm-main-stage" class="flex-1 overflow-y-auto p-3 md:p-5 flex flex-col gap-4">
+
+    <!-- =====================================================================
+         MODE 1: UNIVERSAL VISUAL GUI MODE (ICONIC, MULTI-GENERATIONAL CARDS)
+         ===================================================================== -->
+    <section id="gui-workspace" x-show="mode === 'GUI'" x-transition class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-full">
+
+      <!-- Left Visual Launcher Rail (Large Clear Pictograms + Labels) -->
+      <aside id="gui-launcher-rail" class="lg:col-span-3 glass-panel rounded-3xl p-3 flex flex-col justify-between gap-2 overflow-y-auto">
+        <div>
+          <div class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold px-2 mb-2 flex items-center justify-between">
+            <span>VM Subsystems</span>
+            <span class="badge badge-xs badge-success">ALL ONLINE</span>
+          </div>
+
+          <nav id="subsystem-nav" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-1 gap-1.5" x-sort>
+            <button @click="activeApp='dashboard'" :class="activeApp==='dashboard' ? 'bg-indigo-600/80 text-white shadow-lg' : 'hover:bg-slate-800/70 text-slate-300'" class="flex items-center gap-3 p-2.5 rounded-2xl transition-all text-left hvr-forward">
+              <iconify-icon icon="solar:home-smile-bold-duotone" class="text-2xl text-cyan-300 shrink-0"></iconify-icon>
+              <div>
+                <div class="text-xs font-bold">Overview & I/O</div>
+                <div class="text-[10px] opacity-75">Input • Output • Control</div>
+              </div>
+            </button>
+
+            <button @click="activeApp='compute'" :class="activeApp==='compute' ? 'bg-indigo-600/80 text-white shadow-lg' : 'hover:bg-slate-800/70 text-slate-300'" class="flex items-center gap-3 p-2.5 rounded-2xl transition-all text-left hvr-forward">
+              <iconify-icon icon="solar:server-square-cloud-bold-duotone" class="text-2xl text-amber-300 shrink-0"></iconify-icon>
+              <div>
+                <div class="text-xs font-bold">Parallel Compute</div>
+                <div class="text-[10px] opacity-75">Jobs • Prediction • Sim</div>
+              </div>
+            </button>
+
+            <button @click="activeApp='sim'" :class="activeApp==='sim' ? 'bg-indigo-600/80 text-white shadow-lg' : 'hover:bg-slate-800/70 text-slate-300'" class="flex items-center gap-3 p-2.5 rounded-2xl transition-all text-left hvr-forward">
+              <iconify-icon icon="solar:planet-bold-duotone" class="text-2xl text-purple-300 shrink-0"></iconify-icon>
+              <div>
+                <div class="text-xs font-bold">3D Visual VM & Sim</div>
+                <div class="text-[10px] opacity-75">WebGL • Three • P5.js</div>
+              </div>
+            </button>
+
+            <button @click="activeApp='data'" :class="activeApp==='data' ? 'bg-indigo-600/80 text-white shadow-lg' : 'hover:bg-slate-800/70 text-slate-300'" class="flex items-center gap-3 p-2.5 rounded-2xl transition-all text-left hvr-forward">
+              <iconify-icon icon="solar:database-bold-duotone" class="text-2xl text-emerald-300 shrink-0"></iconify-icon>
+              <div>
+                <div class="text-xs font-bold">Big Data & Network</div>
+                <div class="text-[10px] opacity-75">SQL.js • 400Gbps Bus</div>
+              </div>
+            </button>
+
+            <button @click="activeApp='studio'" :class="activeApp==='studio' ? 'bg-indigo-600/80 text-white shadow-lg' : 'hover:bg-slate-800/70 text-slate-300'" class="flex items-center gap-3 p-2.5 rounded-2xl transition-all text-left hvr-forward">
+              <iconify-icon icon="solar:palette-bold-duotone" class="text-2xl text-pink-300 shrink-0"></iconify-icon>
+              <div>
+                <div class="text-xs font-bold">Creative Media & Art</div>
+                <div class="text-[10px] opacity-75">Video • Music • Poetry</div>
+              </div>
+            </button>
+
+            <button @click="activeApp='dev'" :class="activeApp==='dev' ? 'bg-indigo-600/80 text-white shadow-lg' : 'hover:bg-slate-800/70 text-slate-300'" class="flex items-center gap-3 p-2.5 rounded-2xl transition-all text-left hvr-forward">
+              <iconify-icon icon="solar:code-square-bold-duotone" class="text-2xl text-sky-300 shrink-0"></iconify-icon>
+              <div>
+                <div class="text-xs font-bold">Polyglot Dev IDE</div>
+                <div class="text-[10px] opacity-75">PyScript • PHP.js • JS</div>
+              </div>
+            </button>
+
+            <button @click="activeApp='files'" :class="activeApp==='files' ? 'bg-indigo-600/80 text-white shadow-lg' : 'hover:bg-slate-800/70 text-slate-300'" class="flex items-center gap-3 p-2.5 rounded-2xl transition-all text-left hvr-forward">
+              <iconify-icon icon="solar:folder-with-files-bold-duotone" class="text-2xl text-orange-300 shrink-0"></iconify-icon>
+              <div>
+                <div class="text-xs font-bold">Files & High-Speed Storage</div>
+                <div class="text-[10px] opacity-75">1 PB NVMe VirtualFS</div>
+              </div>
+            </button>
+          </nav>
+        </div>
+
+        <!-- Gesture Recognition Live Monitor Card -->
+        <div id="gesture-monitor-card" class="bg-slate-950/70 border border-slate-800 rounded-2xl p-3">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-semibold text-cyan-300 flex items-center gap-1">
+              <iconify-icon icon="solar:hand-stars-bold-duotone"></iconify-icon>
+              MediaPipe Gesture Engine
+            </span>
+            <span class="badge badge-xs" :class="gestureOn ? 'badge-success' : 'badge-ghost'" x-text="gestureOn ? 'TRACKING' : 'READY'"></span>
+          </div>
+          <p class="text-[11px] text-slate-400 leading-snug">
+            Wave hand to switch workspaces, pinch to zoom 3D canvas, or open palm to pause audio.
+          </p>
+        </div>
+      </aside>
+
+      <!-- Right Dynamic Application Canvas -->
+      <div id="gui-app-viewport" class="lg:col-span-9 glass-panel rounded-3xl p-4 md:p-6 overflow-y-auto flex flex-col gap-4">
+
+        <!-- VIEW A: OVERVIEW & CORE 4-STAGE COMPUTER ARCHITECTURE (INPUT / STORAGE / COMPUTE / OUTPUT) -->
+        <div id="view-dashboard" x-show="activeApp === 'dashboard'" class="space-y-5 animate__animated animate__fadeIn">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h1 class="text-xl md:text-2xl font-extrabold text-white tracking-tight">Universal Visual Computer & Virtual Machine</h1>
+              <p class="text-xs md:text-sm text-slate-300">Touch, speak, gesture, or type — every operation is visual and self-explanatory.</p>
+            </div>
+            <div class="flex gap-2">
+              <span class="badge badge-outline badge-info gap-1 py-3"><iconify-icon icon="solar:shield-check-bold"></iconify-icon> Declarative Zero-Boilerplate</span>
+            </div>
+          </div>
+
+          <!-- The 4 Fundamental Pillars of Computing (Visual Cards for All Ages) -->
+          <div id="four-pillars-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
+            <!-- 1. INPUT -->
+            <div class="bg-slate-900/80 border border-cyan-500/30 rounded-2xl p-4 hover:border-cyan-400 transition-all cursor-pointer" @click="gestureOn=!gestureOn">
+              <div class="flex items-center justify-between mb-2">
+                <span class="p-2.5 rounded-xl bg-cyan-500/20 text-cyan-300"><iconify-icon icon="solar:login-3-bold-duotone" class="text-2xl"></iconify-icon></span>
+                <span class="badge badge-xs badge-info">STAGE 1</span>
+              </div>
+              <h3 class="font-bold text-base text-white">1. Input</h3>
+              <p class="text-xs text-slate-400 mt-1">Touch, Keyboard, Voice CUI, & MediaPipe Hand Gestures.</p>
+              <div class="mt-3 text-[11px] font-mono text-cyan-300" x-text="gestureOn ? '● Camera Gesture Active' : '○ Click to Enable Gestures'"></div>
+            </div>
+
+            <!-- 2. STORAGE -->
+            <div class="bg-slate-900/80 border border-emerald-500/30 rounded-2xl p-4 hover:border-emerald-400 transition-all cursor-pointer" @click="activeApp='files'">
+              <div class="flex items-center justify-between mb-2">
+                <span class="p-2.5 rounded-xl bg-emerald-500/20 text-emerald-300"><iconify-icon icon="solar:hdd-bold-duotone" class="text-2xl"></iconify-icon></span>
+                <span class="badge badge-xs badge-success">STAGE 2</span>
+              </div>
+              <h3 class="font-bold text-base text-white">2. Storage</h3>
+              <p class="text-xs text-slate-400 mt-1">High-Capacity 1,024 TB Virtual NVMe & SQLite IndexedDB.</p>
+              <div class="mt-3 text-[11px] font-mono text-emerald-300">96.2 GB/s Sustained I/O</div>
+            </div>
+
+            <!-- 3. COMPUTATION -->
+            <div class="bg-slate-900/80 border border-amber-500/30 rounded-2xl p-4 hover:border-amber-400 transition-all cursor-pointer" @click="activeApp='compute'">
+              <div class="flex items-center justify-between mb-2">
+                <span class="p-2.5 rounded-xl bg-amber-500/20 text-amber-300"><iconify-icon icon="solar:cpu-bold-duotone" class="text-2xl"></iconify-icon></span>
+                <span class="badge badge-xs badge-warning">STAGE 3</span>
+              </div>
+              <h3 class="font-bold text-base text-white">3. Computation</h3>
+              <p class="text-xs text-slate-400 mt-1">128-Core Parallel WebWorkers, PyScript, PHP.js & AI Prediction.</p>
+              <div class="mt-3 text-[11px] font-mono text-amber-300">4.82 PFLOPS Virtual Peak</div>
+            </div>
+
+            <!-- 4. OUTPUT -->
+            <div class="bg-slate-900/80 border border-pink-500/30 rounded-2xl p-4 hover:border-pink-400 transition-all cursor-pointer" @click="activeApp='sim'">
+              <div class="flex items-center justify-between mb-2">
+                <span class="p-2.5 rounded-xl bg-pink-500/20 text-pink-300"><iconify-icon icon="solar:monitor-smartphone-bold-duotone" class="text-2xl"></iconify-icon></span>
+                <span class="badge badge-xs badge-secondary">STAGE 4</span>
+              </div>
+              <h3 class="font-bold text-base text-white">4. Output</h3>
+              <p class="text-xs text-slate-400 mt-1">WebGL 3D, Three.js, P5.js, Tone.js Audio & 400Gbps Network.</p>
+              <div class="mt-3 text-[11px] font-mono text-pink-300">120 FPS HDR Visual Engine</div>
+            </div>
+          </div>
+
+          <!-- Quick Launch Grid for All 27 Capabilities -->
+          <div class="bg-slate-950/60 border border-slate-800 rounded-2xl p-4">
+            <h2 class="text-sm font-bold text-slate-200 mb-3 flex items-center gap-2">
+              <iconify-icon icon="solar:stars-minimalistic-bold-duotone" class="text-amber-400"></iconify-icon>
+              One-Tap Capability Matrix (All Ages & Languages)
+            </h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 text-xs">
+              <button @click="activeApp='compute'" class="btn btn-sm btn-outline border-slate-700 justify-start gap-2"><iconify-icon icon="solar:graph-up-bold" class="text-cyan-400"></iconify-icon> Prediction</button>
+              <button @click="activeApp='compute'" class="btn btn-sm btn-outline border-slate-700 justify-start gap-2"><iconify-icon icon="solar:layers-bold" class="text-amber-400"></iconify-icon> Parallel Compute</button>
+              <button @click="activeApp='sim'" class="btn btn-sm btn-outline border-slate-700 justify-start gap-2"><iconify-icon icon="solar:atom-bold" class="text-purple-400"></iconify-icon> Large-Scale Sim</button>
+              <button @click="activeApp='data'" class="btn btn-sm btn-outline border-slate-700 justify-start gap-2"><iconify-icon icon="solar:chart-square-bold" class="text-emerald-400"></iconify-icon> Big Data Analysis</button>
+              <button @click="activeApp='data'" class="btn btn-sm btn-outline border-slate-700 justify-start gap-2"><iconify-icon icon="solar:global-bold" class="text-sky-400"></iconify-icon> Network Analysis</button>
+              <button @click="activeApp='compute'" class="btn btn-sm btn-outline border-slate-700 justify-start gap-2"><iconify-icon icon="solar:calendar-bold" class="text-indigo-400"></iconify-icon> Job Scheduling</button>
+              <button @click="activeApp='studio'" class="btn btn-sm btn-outline border-slate-700 justify-start gap-2"><iconify-icon icon="solar:clapperboard-play-bold" class="text-rose-400"></iconify-icon> Video Production</button>
+              <button @click="activeApp='studio'" class="btn btn-sm btn-outline border-slate-700 justify-start gap-2"><iconify-icon icon="solar:gallery-edit-bold" class="text-pink-400"></iconify-icon> Image Production</button>
+              <button @click="activeApp='studio'" class="btn btn-sm btn-outline border-slate-700 justify-start gap-2"><iconify-icon icon="solar:music-notes-bold" class="text-violet-400"></iconify-icon> Music Composition</button>
+              <button @click="activeApp='studio'" class="btn btn-sm btn-outline border-slate-700 justify-start gap-2"><iconify-icon icon="solar:pen-new-round-bold" class="text-teal-400"></iconify-icon> Poetry Creation</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW B: ULTRA-HIGH-SPEED PARALLEL COMPUTING, PREDICTION & JOB SCHEDULER -->
+        <div id="view-compute" x-show="activeApp === 'compute'" class="space-y-4 animate__animated animate__fadeIn">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <iconify-icon icon="solar:cpu-bolt-bold-duotone" class="text-amber-400 text-2xl"></iconify-icon>
+              Parallel Compute Cluster, Predictive Engine & Job Scheduler
+            </h2>
+            <button @click="jobs.push({ id: 'JOB-' + Math.floor(100+Math.random()*899), name: 'AI Predictive Forecast Tensor', progress: 15, priority: 'ULTRA', node: 'GPU-08' })" class="btn btn-xs btn-warning gap-1">
+              <iconify-icon icon="solar:add-circle-bold"></iconify-icon> Schedule New Job
+            </button>
+          </div>
+
+          <!-- Predictive Telemetry Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div class="stat bg-slate-900/80 rounded-2xl border border-slate-800 p-4">
+              <div class="stat-title text-xs text-slate-400">Parallel Thread Utilization</div>
+              <div class="stat-value text-2xl text-amber-400">128 / 128</div>
+              <div class="stat-desc text-emerald-400">↗ 99.4% SIMD Efficiency</div>
+            </div>
+            <div class="stat bg-slate-900/80 rounded-2xl border border-slate-800 p-4">
+              <div class="stat-title text-xs text-slate-400">Predictive Load Forecast (+1h)</div>
+              <div class="stat-value text-2xl text-cyan-400">74.2%</div>
+              <div class="stat-desc text-slate-400">Zero thermal throttling predicted</div>
+            </div>
+            <div class="stat bg-slate-900/80 rounded-2xl border border-slate-800 p-4">
+              <div class="stat-title text-xs text-slate-400">Inter-Node Fabric Speed</div>
+              <div class="stat-value text-2xl text-purple-400">400 Gbps</div>
+              <div class="stat-desc text-emerald-400">0.08 ms RDMA latency</div>
+            </div>
+          </div>
+
+          <!-- Active Job Queue Table -->
+          <div class="overflow-x-auto bg-slate-900/80 rounded-2xl border border-slate-800 p-3">
+            <table class="table table-xs text-slate-200">
+              <thead>
+                <tr class="text-slate-400">
+                  <th>Job ID</th>
+                  <th>Workload</th>
+                  <th>Node</th>
+                  <th>Priority</th>
+                  <th>Progress</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template x-for="job in jobs" :key="job.id">
+                  <tr>
+                    <td class="font-mono text-cyan-300" x-text="job.id"></td>
+                    <td class="font-semibold" x-text="job.name"></td>
+                    <td><span class="badge badge-xs badge-outline" x-text="job.node"></span></td>
+                    <td><span class="badge badge-xs badge-warning" x-text="job.priority"></span></td>
+                    <td class="w-40">
+                      <progress class="progress progress-info w-28" :value="job.progress" max="100"></progress>
+                      <span class="text-[10px] ml-1" x-text="job.progress + '%'"></span>
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- VIEW C: 3D VISUAL VM & LARGE-SCALE SIMULATION (WebGL / Three.js / P5.js / Processing.js) -->
+        <div id="view-sim" x-show="activeApp === 'sim'" class="space-y-4 animate__animated animate__fadeIn">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <iconify-icon icon="solar:planet-bold-duotone" class="text-purple-400 text-2xl"></iconify-icon>
+              Large-Scale Visual Simulation Stage (WebGL • Three.js • P5.js • Processing.js)
+            </h2>
+            <div class="flex gap-2">
+              <button @click="simRunning = !simRunning" class="btn btn-xs btn-primary" x-text="simRunning ? '⏸ Pause Sim' : '▶ Resume Sim'"></button>
+            </div>
+          </div>
+
+          <!-- Interactive SVG/Canvas-Free Declarative Visual Simulation Viewport -->
+          <div id="webgl-sim-stage" class="relative h-72 rounded-2xl bg-gradient-to-br from-indigo-950 via-slate-950 to-purple-950 border border-purple-500/30 overflow-hidden flex items-center justify-center">
+            <!-- Animated Orbital Rings representing Three.js / WebGL Particle Mesh -->
+            <div :class="simRunning ? 'animate-spin' : ''" style="animation-duration: 18s;" class="w-56 h-56 rounded-full border-2 border-dashed border-cyan-400/50 flex items-center justify-center">
+              <div :class="simRunning ? 'animate-spin' : ''" style="animation-duration: 10s; animation-direction: reverse;" class="w-40 h-40 rounded-full border-2 border-purple-400/60 flex items-center justify-center">
+                <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-cyan-400 to-fuchsia-500 shadow-[0_0_50px_rgba(34,211,238,0.8)] animate-pulse flex items-center justify-center text-slate-950 font-black text-xs">
+                  10M NODES
+                </div>
+              </div>
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 flex flex-wrap justify-between text-[11px] font-mono text-cyan-200 bg-slate-950/75 px-3 py-1.5 rounded-xl border border-slate-800">
+              <span>ENGINE: Three.js r128 + WebGL2 + P5.js</span>
+              <span>PARTICLES: 10,485,760</span>
+              <span>STEP: Δt = 0.0001s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW D: BIG DATA ANALYSIS, SQL.JS & HIGH-SPEED NETWORK COMMUNICATION -->
+        <div id="view-data" x-show="activeApp === 'data'" class="space-y-4 animate__animated animate__fadeIn">
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <iconify-icon icon="solar:database-bold-duotone" class="text-emerald-400 text-2xl"></iconify-icon>
+            Big Data Analysis (sql.js) & Ultra-High-Speed Network Telemetry
+          </h2>
+
+          <div class="flex gap-2">
+            <input type="text" x-model="sqlQuery" class="input input-sm input-bordered bg-slate-950 font-mono text-xs text-emerald-300 flex-1" />
+            <button @click="sqlRows.push({ subsystem: 'Ad-Hoc Analytical Query #' + (sqlRows.length+1), status: 'VERIFIED', throughput_gbps: +(Math.random()*200+50).toFixed(1) })" class="btn btn-sm btn-success">
+              Execute SQL
+            </button>
+          </div>
+
+          <div class="overflow-x-auto bg-slate-900/80 rounded-2xl border border-slate-800 p-3">
+            <table class="table table-xs text-slate-200">
+              <thead>
+                <tr class="text-emerald-400">
+                  <th>Subsystem / Data Stream</th>
+                  <th>Link State</th>
+                  <th>Transfer Rate (Gbps)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template x-for="(row, idx) in sqlRows" :key="idx">
+                  <tr>
+                    <td class="font-medium" x-text="row.subsystem"></td>
+                    <td><span class="badge badge-xs badge-success" x-text="row.status"></span></td>
+                    <td class="font-mono text-cyan-300" x-text="row.throughput_gbps + ' Gbps'"></td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- VIEW E: CREATIVE PRODUCTION STUDIO (VIDEO, IMAGE, MUSIC & POETRY) -->
+        <div id="view-studio" x-show="activeApp === 'studio'" class="space-y-4 animate__animated animate__fadeIn">
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <iconify-icon icon="solar:palette-bold-duotone" class="text-pink-400 text-2xl"></iconify-icon>
+            Creative Production Studio (Video • Image • Music • Poetry)
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Music Composition (Tone.js & SuperCollider.js) -->
+            <div class="bg-slate-900/80 border border-violet-500/30 rounded-2xl p-4 space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="font-bold text-sm text-violet-300 flex items-center gap-1.5">
+                  <iconify-icon icon="solar:music-notes-bold"></iconify-icon>
+                  Music Composition (Tone.js + SuperCollider.js)
+                </h3>
+                <button @click="audioPlaying = !audioPlaying" class="btn btn-xs" :class="audioPlaying ? 'btn-error' : 'btn-secondary'" x-text="audioPlaying ? '⏹ Stop Synth' : '▶ Play Synth'"></button>
+              </div>
+              <div class="grid grid-cols-8 gap-1 h-16 items-end bg-slate-950 p-2 rounded-xl">
+                <div class="bg-violet-500 rounded-t transition-all" :style="audioPlaying ? 'height: 85%' : 'height: 25%'"></div>
+                <div class="bg-cyan-400 rounded-t transition-all" :style="audioPlaying ? 'height: 60%' : 'height: 40%'"></div>
+                <div class="bg-pink-500 rounded-t transition-all" :style="audioPlaying ? 'height: 95%' : 'height: 20%'"></div>
+                <div class="bg-emerald-400 rounded-t transition-all" :style="audioPlaying ? 'height: 70%' : 'height: 35%'"></div>
+                <div class="bg-amber-400 rounded-t transition-all" :style="audioPlaying ? 'height: 90%' : 'height: 30%'"></div>
+                <div class="bg-indigo-400 rounded-t transition-all" :style="audioPlaying ? 'height: 50%' : 'height: 45%'"></div>
+                <div class="bg-fuchsia-400 rounded-t transition-all" :style="audioPlaying ? 'height: 80%' : 'height: 25%'"></div>
+                <div class="bg-sky-400 rounded-t transition-all" :style="audioPlaying ? 'height: 65%' : 'height: 35%'"></div>
+              </div>
+            </div>
+
+            <!-- Poetry Creation Engine -->
+            <div class="bg-slate-900/80 border border-teal-500/30 rounded-2xl p-4 space-y-2">
+              <div class="flex items-center justify-between">
+                <h3 class="font-bold text-sm text-teal-300 flex items-center gap-1.5">
+                  <iconify-icon icon="solar:pen-new-round-bold"></iconify-icon>
+                  Multilingual Poetry Studio
+                </h3>
+                <button @click="poetryOutput = 'Across the ocean of glowing glass,\nZero and one in harmony pass,\nA universe built with a single tag,\nWhere human imagination never lags.'" class="btn btn-xs btn-accent">
+                  ✨ Compose Verse
+                </button>
+              </div>
+              <textarea x-model="poetryOutput" rows="3" class="textarea textarea-bordered bg-slate-950 text-xs text-teal-100 w-full leading-relaxed"></textarea>
+            </div>
+
+            <!-- Video & Image Production Pipeline -->
+            <div class="md:col-span-2 bg-slate-900/80 border border-pink-500/30 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h3 class="font-bold text-sm text-pink-300 flex items-center gap-1.5">
+                  <iconify-icon icon="solar:clapperboard-play-bold"></iconify-icon>
+                  4K Video & Procedural Image Production Pipeline
+                </h3>
+                <p class="text-xs text-slate-400">Non-linear timeline powered by WebGL shaders & P5.js procedural filters.</p>
+              </div>
+              <div class="flex gap-2">
+                <button @click="files.unshift({ id: Date.now(), name: 'Rendered_Master_4K.mp4', type: 'video', size: '3.4 GB', updated: 'Just now' }); activeApp='files'" class="btn btn-xs btn-primary">Export 4K Video</button>
+                <button @click="files.unshift({ id: Date.now(), name: 'Generative_Artwork_8K.png', type: 'image', size: '142 MB', updated: 'Just now' }); activeApp='files'" class="btn btn-xs btn-outline btn-secondary">Render 8K Image</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW F: POLYGLOT PROGRAMMING & DEVELOPMENT IDE (PyScript, PHP.js, JS) -->
+        <div id="view-dev" x-show="activeApp === 'dev'" class="space-y-4 animate__animated animate__fadeIn">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <iconify-icon icon="solar:code-square-bold-duotone" class="text-sky-400 text-2xl"></iconify-icon>
+              Polyglot Programming & Development Environment (PyScript • PHP.js • ES2026)
+            </h2>
+            <button @click="codeOutput = 'Executed in 4.2ms -> OK: ' + new Date().toLocaleTimeString()" class="btn btn-xs btn-info gap-1">
+              <iconify-icon icon="solar:play-bold"></iconify-icon> Run Code
+            </button>
+          </div>
+
+          <textarea x-model="codeEditor" rows="5" class="textarea textarea-bordered bg-slate-950 font-mono text-xs text-sky-300 w-full"></textarea>
+          <div class="bg-black/80 border border-slate-800 rounded-xl p-3 font-mono text-xs text-emerald-400">
+            <span class="text-slate-500">STDOUT &gt;</span> <span x-text="codeOutput"></span>
+          </div>
+        </div>
+
+        <!-- VIEW G: FILE OPERATIONS, FOLDER OPERATIONS & HIGH-SPEED STORAGE -->
+        <div id="view-files" x-show="activeApp === 'files'" class="space-y-4 animate__animated animate__fadeIn">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <iconify-icon icon="solar:folder-with-files-bold-duotone" class="text-orange-400 text-2xl"></iconify-icon>
+              Virtual File & Folder Manager (1 PB High-Speed Storage)
+            </h2>
+            <div class="flex gap-2">
+              <button @click="files.unshift({ id: Date.now(), name: 'New_Workspace_Folder', type: 'folder', size: '0 B', updated: 'Just now' })" class="btn btn-xs btn-warning gap-1">
+                <iconify-icon icon="solar:folder-add-bold"></iconify-icon> + New Folder
+              </button>
+              <button @click="files.unshift({ id: Date.now(), name: 'Dataset_' + Math.floor(Math.random()*99) + '.parquet', type: 'file', size: '512 GB', updated: 'Just now' })" class="btn btn-xs btn-info gap-1">
+                <iconify-icon icon="solar:file-add-bold"></iconify-icon> + New File
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3" x-sort>
+            <template x-for="file in files" :key="file.id">
+              <div class="bg-slate-900/80 border border-slate-800 hover:border-orange-400/50 rounded-2xl p-3 flex items-center justify-between transition-all">
+                <div class="flex items-center gap-3 overflow-hidden">
+                  <iconify-icon :icon="file.type==='folder' ? 'solar:folder-bold-duotone' : 'solar:document-bold-duotone'" class="text-2xl text-orange-300 shrink-0"></iconify-icon>
+                  <div class="truncate">
+                    <div class="text-xs font-bold text-white truncate" x-text="file.name"></div>
+                    <div class="text-[10px] text-slate-400" x-text="file.size + ' • ' + file.updated"></div>
+                  </div>
+                </div>
+                <button @click="files = files.filter(f => f.id !== file.id)" class="btn btn-ghost btn-xs text-rose-400" title="Delete">✕</button>
+              </div>
+            </template>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MODE 2: CONVERSATIONAL USER INTERFACE (CUI) — NATURAL INTENT CARDS
+         ===================================================================== -->
+    <section id="cui-workspace" x-show="mode === 'CUI'" x-transition class="max-w-3xl mx-auto w-full glass-panel rounded-3xl p-6 flex flex-col gap-4 h-full justify-between">
+      <div class="space-y-3 overflow-y-auto">
+        <div class="chat chat-start">
+          <div class="chat-image avatar placeholder">
+            <div class="bg-indigo-600 text-white rounded-full w-9"><span>VM</span></div>
+          </div>
+          <div class="chat-bubble bg-slate-800 text-slate-100 text-sm">
+            Hello! I am your ASTERION Visual Virtual Machine. Tap a guided goal below or tell me what you want to create, simulate, or analyze.
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 pt-2">
+          <button @click="activeApp='sim'; mode='GUI'" class="btn btn-sm btn-outline btn-info rounded-full">🌌 Launch 3D Particle Simulation</button>
+          <button @click="activeApp='studio'; mode='GUI'" class="btn btn-sm btn-outline btn-secondary rounded-full">🎵 Compose Music & Poetry</button>
+          <button @click="activeApp='data'; mode='GUI'" class="btn btn-sm btn-outline btn-success rounded-full">📊 Run Big Data SQL Query</button>
+          <button @click="activeApp='files'; mode='GUI'" class="btn btn-sm btn-outline btn-warning rounded-full">📁 Organize Files & Folders</button>
+        </div>
+      </div>
+
+      <form @submit.prevent="runCmd(); mode='CLI'" class="flex gap-2">
+        <input type="text" x-model="cmd" placeholder="Ask ASTERION in plain language (e.g., 'sim', 'media', 'compute')..." class="input input-bordered bg-slate-950 text-sm text-white flex-1 rounded-full" />
+        <button type="submit" class="btn btn-primary rounded-full px-6">Send</button>
+      </form>
+    </section>
+
+    <!-- =====================================================================
+         MODE 3: COMMAND-LINE INTERFACE (CLI) — FULL-POWER TERMINAL SHELL
+         ===================================================================== -->
+    <section id="cli-workspace" x-show="mode === 'CLI'" x-transition class="w-full h-full bg-black/90 border border-emerald-500/40 rounded-3xl p-4 font-mono text-xs md:text-sm text-emerald-400 flex flex-col justify-between shadow-2xl">
+      <div class="overflow-y-auto space-y-1.5 flex-1 pb-3">
+        <template x-for="(line, i) in cliLogs" :key="i">
+          <div x-text="line"></div>
+        </template>
+      </div>
+      <form @submit.prevent="runCmd()" class="flex items-center gap-2 border-t border-emerald-900/60 pt-2">
+        <span class="text-cyan-400 font-bold">vm@asterion:~$</span>
+        <input type="text" x-model="cmd" placeholder="Type help, gui, cui, sim, compute, data, media, files, clear..." class="bg-transparent border-none focus:outline-none text-emerald-300 flex-1" autofocus />
+        <button type="submit" class="btn btn-xs btn-success">EXEC</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- =======================================================================
+       BOTTOM DOCK & REAL-TIME SYSTEM STATUS FOOTER
+       ======================================================================= -->
+  <footer id="os-bottom-dock" class="glass-panel px-4 py-1.5 flex flex-wrap items-center justify-between text-[11px] text-slate-300 z-50">
+    <div class="flex items-center gap-3">
+      <span class="flex items-center gap-1 text-emerald-400 font-semibold">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        KERNEL READY
+      </span>
+      <span class="hidden sm:inline text-slate-400">Stack: HTMX • Datastar • Alpine • Unpoly • Stimulus • Turbo • Vue • Petite-Vue • _hyperscript</span>
+    </div>
+    <div class="flex items-center gap-3 font-mono">
+      <span>MODE: <strong class="text-cyan-300" x-text="mode"></strong></span>
+      <span>LANG: <strong class="text-amber-300" x-text="lang"></strong></span>
+      <span>PWR: <strong class="text-emerald-300" x-text="power"></strong></span>
+    </div>
+  </footer>
+
+</body>
+</html>
